@@ -1,0 +1,60 @@
+{
+  "name": "node-ts-jest-boilerplate",
+  "version": "1.0.0",
+  "description": "node-ts-jest-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheSeTh/node-ts-jest-boilerplate.git"
+  },
+  "author": "Alessio Pragliola",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TheSeTh/node-ts-jest-boilerplate/issues"
+  },
+  "homepage": "https://github.com/TheSeTh/node-ts-jest-boilerplate#readme",
+  "scripts": {
+    "build-sass": "sass src/public/css/main.scss dist/public/css/main.css",
+    "build-ts": "tsc",
+    "build": "npm run build-sass && npm run build-ts && npm run lint && npm run copy-static-assets",
+    "copy-static-assets": "ts-node copyStaticAssets.ts",
+    "debug": "npm run build && npm run watch-debug",
+    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
+    "serve-debug": "nodemon --inspect dist/server.js",
+    "serve": "node dist/server.js",
+    "start": "npm run serve",
+    "test": "jest --forceExit --coverage --verbose",
+    "watch-debug": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "watch-node": "nodemon dist/server.js",
+    "watch-sass": "sass --watch src/public/css/main.scss dist/public/css/main.css",
+    "watch-test": "npm run test -- --watchAll",
+    "watch-ts": "tsc -w",
+    "watch": "concurrently -k -p \"[{name}]\" -n \"Sass,TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-sass\" \"npm run watch-ts\" \"npm run watch-node\""
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.0",
+    "@types/concurrently": "^5.2.1",
+    "@types/errorhandler": "^1.5.0",
+    "@types/eslint": "^7.2.6",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.20",
+    "@types/node": "^14.14.25",
+    "@types/shelljs": "^0.8.8",
+    "@typescript-eslint/eslint-plugin": "^4.15.0",
+    "@typescript-eslint/parser": "^4.15.0",
+    "concurrently": "^5.3.0",
+    "eslint": "^7.19.0",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.7",
+    "sass": "^1.32.6",
+    "shelljs": "^0.8.4",
+    "ts-jest": "^26.5.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "errorhandler": "^1.5.1",
+    "express": "^4.17.1"
+  }
+}
